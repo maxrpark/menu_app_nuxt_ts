@@ -7,7 +7,7 @@ const useAddOrder = (comida: any, table: any, amount: number, id: any) => {
   if (tempItem) {
     const tempCart = table.order.map((item: any) => {
       if (item.id === comida.id) {
-        item.amount += 1;
+        item.amount += amount;
         item.total = item.price * item.amount;
         return item;
       }
