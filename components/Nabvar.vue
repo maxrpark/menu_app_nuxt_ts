@@ -1,0 +1,46 @@
+<template>
+  <nav class="navbar navbar-expand-lg bg-light navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        :aria-expanded="expand"
+        aria-label="Toggle navigation"
+        @click="toggleCollapse"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item active">
+            <NuxtLink class="nav-link" to="/">Home</NuxtLink>
+          </li>
+          <li class="nav-item">
+            <NuxtLink class="nav-link" to="/about">About</NuxtLink>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</template>
+
+<script setup lang="ts">
+let expand = ref(false);
+const toggleCollapse = () => {
+  const navbar = document.querySelector('.navbar-collapse');
+  const toggle = document.querySelector('.navbar-toggler');
+  expand.value = !expand.value;
+  navbar.classList.toggle('show');
+  toggle.classList.toggle('collapsed');
+};
+</script>
+
+<style scoped>
+.ml-auto {
+  margin-left: auto;
+}
+</style>

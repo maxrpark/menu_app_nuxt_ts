@@ -1,0 +1,20 @@
+import { defineNuxtConfig } from 'nuxt';
+
+// https://v3.nuxtjs.org/api/configuration/nuxt.config
+export default defineNuxtConfig({
+  typescript: {
+    strict: true,
+    typeCheck: true,
+  },
+  buildModules: ['@pinia/nuxt'],
+
+  meta: {
+    link: [
+      {
+        rel: 'stylesheet',
+        href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
+      },
+    ],
+  },
+  css: ['@/assets/styles/style.css'],
+});
