@@ -3,6 +3,7 @@
     <TableDetail :table="documents[0]" />
     <TableOrdersDetails :orders="documents[0].order" />
     <h1>Total: ${{ documents[0].total_amount }}</h1>
+    <FiltersOptions />
     <MenuItems />
   </div>
   <div v-else>loading</div>
@@ -12,8 +13,8 @@
 import { db } from '../../firebase/config';
 import { updateDoc, doc } from 'firebase/firestore';
 import { TableInterface } from '../../ts/interfaces/globalInterfaces';
-let pageRoute = useRoute();
 
+let pageRoute = useRoute();
 const { documents, isLoading } = getCollection('tables', [
   'id',
   '==',

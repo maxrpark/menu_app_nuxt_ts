@@ -1,6 +1,12 @@
 import { updateDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/config';
+import getCollection from '../composables/getCollection';
+// const useAddOrder = (comida: any, tableID: any, amount: number, id: any) => {
 const useAddOrder = (comida: any, table: any, amount: number, id: any) => {
+  // let { documents } = getCollection('tables', ['id', '==', tableID]);
+
+  // console.log(documents._rawValue);
+
   // @ts-ignore: Unreachable code error
   const docRef = doc(db, 'tables', id);
   const tempItem = table.order.find((i: any) => i.id === comida.id);
