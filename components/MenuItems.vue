@@ -1,8 +1,15 @@
 <template>
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <div
+      @click="selectedCategory(category)"
+      v-for="category in store.categories"
+      :key="category"
+    >
+      <p>{{ category }}</p>
+    </div>
+    <div
       class="col"
-      v-for="menu in store.menu"
+      v-for="menu in store.filtered_menu"
       :key="menu.id"
       style="width: 18rem"
     >
@@ -31,18 +38,18 @@
 </template>
 
 <script setup lang="ts">
-import { useRestaurantStore } from '../store/restaurant';
 import useAddOrder from '../composables/useAddOrder';
+import { useRestaurantStore } from '../store/restaurant';
+import { Menu } from '../ts/interfaces/globalInterfaces';
 let store = useRestaurantStore();
-store.setTables();
 store.fetch();
 
 // variables
 let pageRoute = useRoute();
-let showAmount = ref<boolean>(false);
+let showAmount = ref(false);
 let selected_menu = ref<number | null>(null);
-let menu_amount = ref<number>(0);
-const { documents, isLoading } = getCollection('tables', [
+let menu_amount = ref(0);
+let { documents, isLoading } = getCollection('tables', [
   'id',
   '==',
   pageRoute.params.tableID,
@@ -58,7 +65,7 @@ const addToOder = (id: number) => {
   }
 };
 
-const confirmOrder = (menu: any) => {
+const confirmOrder = (menu: Menu) => {
   useAddOrder(
     menu,
     documents._rawValue[0],
@@ -75,6 +82,13 @@ const handleDecrease = () => {
 };
 const handleIncrease = () => {
   menu_amount.value++;
+};
+
+/// selected category
+
+const selectedCategory = (category: string) => {
+  store.selectedCategory = category;
+  store.filterMenu(category);
 };
 </script>
 

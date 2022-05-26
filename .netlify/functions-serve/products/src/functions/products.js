@@ -4457,7 +4457,7 @@ exports.handler = async () => {
     const { records } = await airtable.list();
     const products = records.map((product) => {
       const { id } = product;
-      const { name, desc, image, price, category } = product.fields;
+      const { name, desc, image, price, category, tags } = product.fields;
       const url = image[0].url;
       return {
         id,
@@ -4465,7 +4465,8 @@ exports.handler = async () => {
         desc,
         price,
         category,
-        url
+        url,
+        tags
       };
     });
     return {

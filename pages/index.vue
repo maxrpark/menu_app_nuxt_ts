@@ -45,11 +45,11 @@
 <script setup lang="ts">
 import { TableInterface } from '../ts/interfaces/globalInterfaces';
 import { db } from '../firebase/config';
-import { doc, addDoc, collection, updateDoc } from 'firebase/firestore';
-let router = useRouter();
+import { doc, updateDoc } from 'firebase/firestore';
 
 // get collection
 const { documents, isLoading } = getCollection('tables');
+let router = useRouter();
 
 let heroInfo = reactive({
   title: 'Menu App!',
