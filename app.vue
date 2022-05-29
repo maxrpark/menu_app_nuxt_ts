@@ -5,8 +5,8 @@
   </div>
 </template>
 
-<!-- <script setup lang="ts"></script> -->
+<script setup lang="ts">
+getCollection('tables');
+</script>
 
-<style scoped>
-/* @import 'https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css'; */
-</style>
+<style scoped></style>

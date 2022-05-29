@@ -14,8 +14,6 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-
-console.log(props.table);
 </script>
 
 <style scoped></style>

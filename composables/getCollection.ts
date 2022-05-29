@@ -1,7 +1,9 @@
 import { db } from '../firebase/config';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { useRestaurantStore } from '../store/restaurant';
 
 const getCollection = (c: string, q?: any) => {
+  let store = useRestaurantStore();
   const documents = ref([] as any);
   // collection reference
   let colRef = collection(db, c);
@@ -17,6 +19,11 @@ const getCollection = (c: string, q?: any) => {
       results.push({ ...doc.data(), id: doc.id });
     });
     // update values
+    if (q) {
+      store.custumberTable(results[0]);
+    } else {
+      store.setTables(results);
+    }
     documents.value = results;
     isLoading.value = false;
   });
@@ -24,7 +31,7 @@ const getCollection = (c: string, q?: any) => {
   watchEffect((onInvalidate) => {
     onInvalidate(() => unSub());
   });
-
+  console.log('hello');
   return { documents, isLoading };
 };
 

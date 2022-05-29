@@ -5,11 +5,19 @@
       <h5 class="card-title">{{ menu.name }}</h5>
       <p class="card-text">$ {{ menu.price }}</p>
 
-      <button @click="addToOder(menu.id)" class="btn btn-primary">
+      <button
+        @click="restaurantStore.addToOder(menu.id)"
+        class="btn btn-primary"
+      >
         Add to order
       </button>
 
-      <div v-if="showAmount && menu.id === selected_menu">
+      <div
+        v-if="
+          restaurantStore.showAmount &&
+          menu.id === restaurantStore.selected_menu
+        "
+      >
         <button @click="handleIncrease" class="btn btn-primary">+</button>
         <button @click="confirmOrder(menu)" class="btn btn-primary">
           Confirm
@@ -25,6 +33,8 @@
 import useAddOrder from '../composables/useAddOrder';
 import { Menu } from '../ts/interfaces/globalInterfaces';
 import useMenuItems from '../composables/useMenuItems';
+import { useRestaurantStore } from '../store/restaurant';
+let restaurantStore = useRestaurantStore();
 
 interface Props {
   menu: Menu;
@@ -33,38 +43,22 @@ interface Props {
 
 const props = defineProps<Props>();
 
-// TODO FIX get table from store
 let pageRoute = useRoute();
-let { documents, isLoading } = getCollection('tables', [
-  'id',
-  '==',
-  pageRoute.params.tableID,
-]);
 
-const {
-  addToOder,
-  handleIncrease,
-  handleDecrease,
-  menu_amount,
-  showAmount,
-  selected_menu,
-} = useMenuItems();
+let showAmount = restaurantStore.showAmount;
+const { handleIncrease, handleDecrease, menu_amount } = useMenuItems();
 // variables
 
 const confirmOrder = (menu: Menu) => {
   useAddOrder(
     menu,
-    // pageRoute.params.tableID,
-    documents._rawValue[0],
+    restaurantStore.custumerTable,
     menu_amount.value,
     pageRoute.params.tableID
   );
   menu_amount.value = 0;
-  showAmount.value = false;
+  showAmount = false;
 };
-
-handleDecrease();
-handleIncrease();
 </script>
 
 <style scoped></style>

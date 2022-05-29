@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="container" v-show="!isLoading">
+    <div class="container">
       <Hero :props="heroInfo" />
       <div
         @click="handleTableClick(table)"
-        v-for="table in documents"
+        v-for="table in restaurantStore.tables"
         :key="table.id"
         :class="`${table && table.available ? 'available' : 'not-available'}`"
       >
@@ -37,7 +37,7 @@
         </form>
         Number of guest: {{ tableInformation.numberOfPersons }}
       </div>
-      <RestaurantOwnerTablesControl :documents="documents" />
+      <RestaurantOwnerTablesControl :tables="restaurantStore.tables" />
     </div>
   </div>
 </template>
@@ -46,11 +46,10 @@
 import { TableInterface } from '../ts/interfaces/globalInterfaces';
 import { db } from '../firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
+import { useRestaurantStore } from '~~/store/restaurant';
+let restaurantStore = useRestaurantStore();
 
-// get collection
-const { documents, isLoading } = getCollection('tables');
 let router = useRouter();
-
 let heroInfo = reactive({
   title: 'Menu App!',
   text: 'Welcome to you best restaurant app',

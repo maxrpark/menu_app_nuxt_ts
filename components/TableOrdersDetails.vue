@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="orders">
     <h2>My Order</h2>
     <div v-for="item in orders" :key="item.id">
       <p>{{ item.comida }}</p>

@@ -1,9 +1,9 @@
 <template>
-  <div v-if="documents">
+  <div v-if="tables">
     <h2>Owner</h2>
     <div
       @click="handleOwnerTableClick(table)"
-      v-for="table in documents"
+      v-for="table in tables"
       :key="table.id"
       :class="`${table.available ? 'available' : 'not-available'}`"
     >
@@ -25,7 +25,7 @@ import { db } from '@/firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
 
 interface PropsInt {
-  documents: TableInterface[];
+  tables: TableInterface[];
 }
 const props = defineProps<PropsInt>();
 

@@ -1,11 +1,6 @@
 <template>
   <div class="row row-cols-1 row-cols-md-2 g-4">
-    <div
-      class="col"
-      v-for="menu in store.filtered_menu"
-      :key="menu.id"
-      style="width: 18rem"
-    >
+    <div class="col" v-for="menu in store.filtered_menu" style="width: 18rem">
       <SingleItem :menu="menu" />
     </div>
   </div>

@@ -9,24 +9,55 @@ export const useRestaurantStore = defineStore({
       max: 'max',
       custumerTable: {} as TableInterface,
       categories: [] as string[],
-      sub_categories: [] as string[],
       menu: [] as Menu[],
+      sub_categories: [] as string[],
       filtered_menu: [] as Menu[],
+      tempList: [] as Menu[], // fix
       selectedCategory: 'all',
+      selected_menu: '' as string | number,
+      showAmount: false,
     };
   },
   getters: {
-    filterMenu: (state) => (category: string) => {
-      if (category === 'all') {
-        return (state.filtered_menu = state.menu);
-      }
+    filterMenu: (state) => (type: string, value: string) => {
+      if (type === 'category') {
+        if (value === 'all') {
+          state.selectedCategory = 'all';
+          return (state.filtered_menu = state.menu);
+        } else {
+          state.selectedCategory = value;
+          state.filtered_menu = state.menu.filter(
+            (item: Menu) => item.category === value
+          );
+          let sub_category_list = state.filtered_menu.map((item: Menu) => {
+            return item.tags;
+          });
+          state.sub_categories = ['all', ...new Set(sub_category_list.flat())];
+          state.tempList = [...state.filtered_menu];
+          return state.filtered_menu, state.sub_categories;
+        }
+      } else {
+        if (value === 'all') {
+          return (state.filtered_menu = state.tempList);
+        } else {
+          state.filtered_menu = state.tempList.filter((item) =>
+            item.tags.every((tag) => tag.includes(value))
+          );
 
-      return (state.filtered_menu = state.menu.filter(
-        (item: Menu) => item.category === category
-      ));
+          return state.filtered_menu;
+        }
+      }
     },
   },
   actions: {
+    addToOder(id: number) {
+      this.selected_menu = id;
+      if (this.selected_menu === id) {
+        this.showAmount = true;
+      } else {
+        this.showAmount = false;
+      }
+    },
     fetch() {
       const data = $fetch(`http://localhost:8888/api/products/`).then(
         (res: any) => {
@@ -36,41 +67,19 @@ export const useRestaurantStore = defineStore({
             return item.category;
           });
           this.categories = ['all', ...new Set(category_list)];
-          let sub_category_list: string[] = res.map((item: Menu) => {
-            return item.tags;
-          });
-          this.sub_categories = ['all', ...new Set(sub_category_list.flat())];
+          // let sub_category_list: string[] = res.map((item: Menu) => {
+          //   return item.tags;
+          // });
+          // this.sub_categories = ['all', ...new Set(sub_category_list.flat())];
         }
       );
     },
 
-    async setTables() {
-      try {
-        const { documents } = await getCollection('tables');
-        setTimeout(() => {
-          // fix
-          this.tables = documents._rawValue;
-        }, 500);
-      } catch (error) {
-        console.error(error);
-      }
+    setTables(data: any) {
+      this.tables = data;
     },
-    async custumberTable(id: string) {
-      try {
-        const { documents, isLoading } = await getCollection('tables', [
-          'id',
-          '==',
-          id,
-        ]);
-        // this.custumerTable = documents;
-
-        setTimeout(() => {
-          // fix
-          this.custumerTable = documents._rawValue[0];
-        }, 500);
-      } catch (error) {
-        console.error(error);
-      }
+    custumberTable(data: any) {
+      this.custumerTable = data;
     },
   },
 });
