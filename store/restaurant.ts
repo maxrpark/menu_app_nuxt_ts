@@ -14,6 +14,7 @@ export const useRestaurantStore = defineStore({
       filtered_menu: [] as Menu[],
       tempList: [] as Menu[], // fix
       selectedCategory: 'all',
+      sub_category: 'all',
       selected_menu: '' as string | number,
       showAmount: false,
     };
@@ -23,6 +24,7 @@ export const useRestaurantStore = defineStore({
       if (type === 'category') {
         if (value === 'all') {
           state.selectedCategory = 'all';
+
           return (state.filtered_menu = state.menu);
         } else {
           state.selectedCategory = value;
@@ -38,8 +40,10 @@ export const useRestaurantStore = defineStore({
         }
       } else {
         if (value === 'all') {
+          state.sub_category = 'all';
           return (state.filtered_menu = state.tempList);
         } else {
+          state.sub_category = value;
           state.filtered_menu = state.tempList.filter((item) =>
             item.tags.every((tag) => tag.includes(value))
           );

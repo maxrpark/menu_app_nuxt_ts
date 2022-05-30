@@ -1,38 +1,28 @@
 <template>
-  <div class="card">
+  <div class="card shadow">
     <img :src="menu.url" class="card-img-top" :alt="menu.name" />
-    <div class="card-body">
+    <div class="card-header d-flex justify-content-between">
       <h5 class="card-title">{{ menu.name }}</h5>
       <p class="card-text">$ {{ menu.price }}</p>
+    </div>
+    <div class="card-body">
+      <p>{{ menu.desc }}</p>
 
       <button
+        v-if="menu.id !== restaurantStore.selected_menu"
         @click="restaurantStore.addToOder(menu.id)"
-        class="btn btn-primary"
+        class="btn btn-primary d-flex mx-auto"
       >
         Add to order
       </button>
 
-      <div
-        v-if="
-          restaurantStore.showAmount &&
-          menu.id === restaurantStore.selected_menu
-        "
-      >
-        <button @click="handleIncrease" class="btn btn-primary">+</button>
-        <button @click="confirmOrder(menu)" class="btn btn-primary">
-          Confirm
-        </button>
-        <h2>amount: {{ menu_amount }}</h2>
-        <button @click="handleDecrease" class="btn btn-primary">-</button>
-      </div>
+      <SingleItemButtons :menu="menu" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import useAddOrder from '../composables/useAddOrder';
 import { Menu } from '../ts/interfaces/globalInterfaces';
-import useMenuItems from '../composables/useMenuItems';
 import { useRestaurantStore } from '../store/restaurant';
 let restaurantStore = useRestaurantStore();
 
@@ -42,23 +32,14 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-
-let pageRoute = useRoute();
-
-let showAmount = restaurantStore.showAmount;
-const { handleIncrease, handleDecrease, menu_amount } = useMenuItems();
-// variables
-
-const confirmOrder = (menu: Menu) => {
-  useAddOrder(
-    menu,
-    restaurantStore.custumerTable,
-    menu_amount.value,
-    pageRoute.params.tableID
-  );
-  menu_amount.value = 0;
-  showAmount = false;
-};
 </script>
 
-<style scoped></style>
+<style scoped>
+.card {
+  transition: all 0.3s linear;
+}
+.card:hover {
+  box-shadow: 0px 0px 20px #000;
+  transform: scale(1.02);
+}
+</style>

@@ -38,6 +38,8 @@
         Number of guest: {{ tableInformation.numberOfPersons }}
       </div>
       <RestaurantOwnerTablesControl :tables="restaurantStore.tables" />
+      <IconGrid />
+      <SpecialCards />
     </div>
   </div>
 </template>

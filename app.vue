@@ -1,7 +1,9 @@
 <template>
   <div>
     <Nabvar />
-    <NuxtPage />
+    <main class="container">
+      <NuxtPage />
+    </main>
   </div>
 </template>
 

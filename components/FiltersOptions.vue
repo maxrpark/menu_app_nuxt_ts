@@ -1,20 +1,17 @@
 <template>
-  <div
-    @click="store.filterMenu('category', category)"
-    v-for="category in store.categories"
-    :key="category"
-  >
-    <p>{{ category }}</p>
-  </div>
+  <h2 class="h2 text-center my-4">Categories</h2>
+  <FilterButtons
+    :types="store.categories"
+    :selectedType="store.selectedCategory"
+    optionFilter="category"
+  />
   <section v-if="store.selectedCategory !== 'all'">
-    <h2>sub</h2>
-    <div
-      @click="store.filterMenu('tags', sub_category)"
-      v-for="sub_category in store.sub_categories"
-      :key="sub_category"
-    >
-      <p>{{ sub_category }}</p>
-    </div>
+    <h2 class="h4 text-center my-4">Sub Categories</h2>
+    <FilterButtons
+      :types="store.sub_categories"
+      :selectedType="store.sub_category"
+      optionFilter="tags"
+    />
   </section>
 </template>
 
