@@ -20,7 +20,11 @@ export default defineNuxtConfig({
       },
     ],
     script: [
-      { src: '/assets/js/bootstrap.bundle.min.js', type: 'text/javascript' },
+      // { src: '/assets/js/bootstrap.bundle.min.js', type: 'text/javascript' },
+      {
+        src: 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js',
+        type: 'text/javascript',
+      },
     ],
   },
 

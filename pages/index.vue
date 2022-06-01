@@ -10,7 +10,6 @@
       </div>
     </div>
     <TableDetailModal v-if="restaurantStore.isTableSelected" />
-    <RestaurantOwnerTablesControl :tables="restaurantStore.tables" />
     <IconGrid />
   </div>
 </template>
