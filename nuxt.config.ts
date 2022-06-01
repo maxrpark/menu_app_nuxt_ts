@@ -6,7 +6,11 @@ export default defineNuxtConfig({
     strict: true,
     typeCheck: true,
   },
-  buildModules: ['@pinia/nuxt'],
+  buildModules: [
+    '@pinia/nuxt',
+
+    // 'bootstrap-icons'
+  ],
 
   meta: {
     link: [
@@ -15,6 +19,10 @@ export default defineNuxtConfig({
         href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css',
       },
     ],
+    script: [
+      { src: '/assets/js/bootstrap.bundle.min.js', type: 'text/javascript' },
+    ],
   },
+
   css: ['@/assets/styles/style.css'],
 });

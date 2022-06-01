@@ -8,6 +8,8 @@ export interface TableInterface {
   id: number | string;
   available: boolean;
   name: string;
+  image: string;
+  desc: string;
   number_of_seats: string;
   order: OrderInterface[] | any; //fix
   number_of_guests: number;

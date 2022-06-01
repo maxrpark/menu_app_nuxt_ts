@@ -8,6 +8,7 @@ export const useRestaurantStore = defineStore({
       tables: [] as TableInterface[],
       max: 'max',
       custumerTable: {} as TableInterface,
+      selectedTable: {} as TableInterface, // check if not same with custumerTable
       categories: [] as string[],
       menu: [] as Menu[],
       sub_categories: [] as string[],
@@ -17,6 +18,7 @@ export const useRestaurantStore = defineStore({
       sub_category: 'all',
       selected_menu: '' as string | number,
       showAmount: false,
+      isTableSelected: false,
     };
   },
   getters: {
@@ -52,6 +54,10 @@ export const useRestaurantStore = defineStore({
         }
       }
     },
+    tableDescription: () => (des: string) => {
+      var regex = /[B]/g;
+      return des.replace(regex, '<br/>');
+    },
   },
   actions: {
     addToOder(id: number) {
@@ -84,6 +90,17 @@ export const useRestaurantStore = defineStore({
     },
     custumberTable(data: any) {
       this.custumerTable = data;
+    },
+    handleTableClick(table: TableInterface) {
+      if (table.available) {
+        this.selectedTable = table;
+        this.isTableSelected = true;
+        document.body.style.overflow = 'hidden';
+      }
+    },
+    closeModal() {
+      this.isTableSelected = false;
+      document.body.style.overflow = 'auto';
     },
   },
 });

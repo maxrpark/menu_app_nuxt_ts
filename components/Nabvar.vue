@@ -10,7 +10,6 @@
         aria-controls="navbarSupportedContent"
         :aria-expanded="expand"
         aria-label="Toggle navigation"
-        @click="toggleCollapse"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -30,13 +29,6 @@
 
 <script setup lang="ts">
 let expand = ref(false);
-const toggleCollapse = () => {
-  const navbar = document.querySelector('.navbar-collapse')!;
-  const toggle = document.querySelector('.navbar-toggler')!;
-  expand.value = !expand.value;
-  navbar.classList.toggle('show');
-  toggle.classList.toggle('collapsed');
-};
 </script>
 
 <style scoped>

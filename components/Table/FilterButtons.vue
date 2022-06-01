@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRestaurantStore } from '../store/restaurant';
+import { useRestaurantStore } from '../../store/restaurant';
 interface Props {
   optionFilter: string;
   types: Array<string>;

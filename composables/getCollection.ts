@@ -31,7 +31,6 @@ const getCollection = (c: string, q?: any) => {
   watchEffect((onInvalidate) => {
     onInvalidate(() => unSub());
   });
-  console.log('hello');
   return { documents, isLoading };
 };
 

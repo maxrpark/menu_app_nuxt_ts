@@ -22,8 +22,8 @@
 </template>
 
 <script setup lang="ts">
-import { Menu } from '../ts/interfaces/globalInterfaces';
-import { useRestaurantStore } from '../store/restaurant';
+import { Menu } from '../../ts/interfaces/globalInterfaces';
+import { useRestaurantStore } from '../../store/restaurant';
 let restaurantStore = useRestaurantStore();
 
 interface Props {
