@@ -1,13 +1,14 @@
-import { updateDoc, doc } from 'firebase/firestore';
+import { updateDoc, doc, addDoc, collection } from 'firebase/firestore';
+
 import { db } from '../firebase/config';
-import getCollection from '../composables/getCollection';
+
 // const useAddOrder = (comida: any, tableID: any, amount: number, id: any) => {
-const useAddOrder = (comida: any, table: any, amount: number, id: any) => {
-  // let { documents } = getCollection('tables', ['id', '==', tableID]);
-
-  // console.log(documents._rawValue);
-
-  // @ts-ignore: Unreachable code error
+const useAddOrder = async (
+  comida: any,
+  table: any,
+  amount: number,
+  id: any
+) => {
   const docRef = doc(db, 'tables', id);
   const tempItem = table.order.find((i: any) => i.id === comida.id);
   if (tempItem) {
@@ -25,12 +26,21 @@ const useAddOrder = (comida: any, table: any, amount: number, id: any) => {
   } else {
     let orderItem = {
       id: comida.id,
-      comida: comida.name,
+      name: comida.name,
       price: comida.price,
       amount,
       total: comida.price * amount,
     };
-    updateDoc(docRef, {
+
+    let sendOrder = {
+      name: comida.name,
+      isCompleted: false,
+      amount: amount,
+    };
+
+    const colRef = collection(db, 'orders');
+    await addDoc(colRef, sendOrder);
+    await updateDoc(docRef, {
       order: [...table.order, orderItem],
     });
   }

@@ -21,7 +21,7 @@ const getCollection = (c: string, q?: any) => {
     // update values
     if (q) {
       store.custumberTable(results[0]);
-    } else {
+    } else if (c === 'tables') {
       store.setTables(results);
     }
     documents.value = results;

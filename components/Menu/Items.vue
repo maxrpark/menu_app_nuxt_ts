@@ -9,7 +9,7 @@
 <script setup lang="ts">
 import { useRestaurantStore } from '../../store/restaurant';
 let store = useRestaurantStore();
-store.fetch();
+store.fetch(); // fix
 </script>
 
 <style scoped></style>

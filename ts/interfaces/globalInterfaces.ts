@@ -3,6 +3,7 @@ export interface OrderInterface {
   comida: string;
   price: number;
   amount: number;
+  isCompleted?: boolean;
 }
 export interface TableInterface {
   id: number | string;
