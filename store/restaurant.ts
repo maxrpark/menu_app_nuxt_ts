@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia';
-import getCollection from '../composables/getCollection';
 import { TableInterface, Menu } from '../ts/interfaces/globalInterfaces';
 export const useRestaurantStore = defineStore({
   id: 'restaurant-store',
@@ -77,10 +76,6 @@ export const useRestaurantStore = defineStore({
             return item.category;
           });
           this.categories = ['all', ...new Set(category_list)];
-          // let sub_category_list: string[] = res.map((item: Menu) => {
-          //   return item.tags;
-          // });
-          // this.sub_categories = ['all', ...new Set(sub_category_list.flat())];
         }
       );
     },
@@ -101,6 +96,16 @@ export const useRestaurantStore = defineStore({
     closeModal() {
       this.isTableSelected = false;
       document.body.style.overflow = 'auto';
+    },
+
+    managerTableDetails(id: string) {
+      let selectedTable = this.tables.find(
+        (item: TableInterface) => item.id === id
+      );
+      if (selectedTable) {
+        this.selectedTable = selectedTable;
+        console.log(this.selectedTable);
+      }
     },
   },
 });

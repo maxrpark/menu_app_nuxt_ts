@@ -18,12 +18,12 @@
       />
       <div class="col">
         <h2>Orders</h2>
-        <pre>{{ orders }}</pre>
-        <!-- class="d-flex justify-content-between align-items-center m-0 text-light p-2 bg-danger height-100" -->
         <div
+          class="d-flex justify-content-between align-items-center m-0 text-light p-2 bg-danger height-100"
           :style="{ height: '30px' }"
           v-for="order in orders"
           :key="order.id"
+          @click="completedItem(order.id)"
         >
           <p>
             {{ order.name }}
@@ -40,8 +40,15 @@
 
 <script setup lang="ts">
 import { useRestaurantStore } from '~~/store/restaurant';
+import { db } from '../firebase/config';
+import { doc, deleteDoc } from 'firebase/firestore';
 let restaurantStore = useRestaurantStore();
 const { documents: orders } = getCollection('orders');
+
+const completedItem = (id: string) => {
+  const docRef = doc(db, 'orders', id);
+  deleteDoc(docRef);
+};
 </script>
 
 <style scoped></style>

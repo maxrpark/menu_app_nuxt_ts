@@ -6,7 +6,7 @@ export interface OrderInterface {
   isCompleted?: boolean;
 }
 export interface TableInterface {
-  id: number | string;
+  id: string;
   available: boolean;
   name: string;
   image: string;

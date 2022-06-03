@@ -2,27 +2,28 @@
   <div v-if="tables">
     <h2>Owner</h2>
     <div
-      @click="handleOwnerTableClick(table)"
       v-for="table in tables"
       :key="table.id"
       :class="`${table.available ? 'available' : 'not-available'}`"
     >
       {{ table.name }} ||
-      <span v-if="table.available">
-        {{ 'available' }}
-      </span>
-      <span else>
-        {{ 'no available' }}
-      </span>
+      <p>{{ table.available ? 'available' : 'not available' }}</p>
+      <button @click="handleOwnerTableClick(table)" class="btn-primary">
+        {{ table.available ? 'available' : 'not available' }}
+      </button>
+      <button @click="store.managerTableDetails(table.id)" class="btn-primary">
+        tables details
+      </button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { TableInterface } from '../../ts/interfaces/globalInterfaces';
-
 import { db } from '@/firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
+import { useRestaurantStore } from '@/store/restaurant';
+const store = useRestaurantStore();
 
 interface PropsInt {
   tables: TableInterface[];
