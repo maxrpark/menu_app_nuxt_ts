@@ -1,22 +1,12 @@
 <template>
   <div class="container my-5">
-    <div
-      class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg"
-    >
-      <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+    <!-- pe-lg-0  -->
+    <div class="row p-3 rounded-3 border shadow-lg">
+      <div class="d-flex justify-content-between align-items-center p-3">
         <h1 class="display-4 fw-bold lh-1">
           {{ restaurantStore.custumerTable.name }}
         </h1>
-        <p
-          v-if="restaurantStore.custumerTable.name"
-          class="lead"
-          v-html="
-            restaurantStore.tableDescription(restaurantStore.custumerTable.desc)
-          "
-        ></p>
-        <div
-          class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3"
-        >
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
           <button
             type="button"
             class="btn btn-primary btn-lg px-4 me-md-2 fw-bold"
@@ -28,9 +18,23 @@
           </button>
         </div>
       </div>
-      <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
-        <img class="rounded-lg-3" src="bootstrap-docs.png" alt="" width="720" />
-      </div>
+      <p
+        v-if="restaurantStore.custumerTable.name"
+        class="lead"
+        v-html="
+          restaurantStore.tableDescription(restaurantStore.custumerTable.desc)
+        "
+      ></p>
+      <Collapse
+        text="Order Details"
+        identifier="toogleOrders"
+        v-if="restaurantStore.custumerTable.order"
+      >
+        <TableOrdersDetails
+          :orders="restaurantStore.custumerTable.order"
+          :total="restaurantStore.custumerTable.total_amount"
+        />
+      </Collapse>
     </div>
   </div>
 </template>
@@ -40,4 +44,10 @@ import { useRestaurantStore } from '~~/store/restaurant';
 let restaurantStore = useRestaurantStore();
 </script>
 
-<style scoped></style>
+<style scoped>
+.image {
+  max-height: 300px;
+  object-fit: cover;
+  object-position: center;
+}
+</style>

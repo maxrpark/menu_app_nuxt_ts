@@ -1,13 +1,6 @@
 <template>
-  <div v-if="restaurantStore.custumerTable">
+  <div class="container">
     <TableHero />
-    <TableDetail />
-    <TableOrdersDetails
-      v-if="restaurantStore.custumerTable.order"
-      :orders="restaurantStore.custumerTable.order"
-      :total="restaurantStore.custumerTable.total_amount"
-    />
-    <h1>Total: ${{ restaurantStore.custumerTable.total_amount }}</h1>
     <TableFiltersOptions />
     <MenuItems />
   </div>

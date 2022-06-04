@@ -1,17 +1,26 @@
 <template>
   <div class="container">
-    <h2>Total amount</h2>
+    <div
+      class="d-flex justify-content-between align-items-center my-3 bg-danger total-amount p-2"
+    >
+      <h2>Total amount</h2>
+      <h2>$300</h2>
+    </div>
     <section class="row">
       <RestaurantOwnerTablesControl
         @handleOwnerTableClick="handleOwnerTableClick"
-        class="col"
+        class="col-12 col-md-5 col-lg-6"
         :tables="restaurantStore.tables"
       />
-      <RestaurantOwnerSelectedTable class="col-5" />
+      <RestaurantOwnerSelectedTable class="col-12 col-md-7 col-lg-6" />
     </section>
+
     <section class="row">
-      <RestaurantOwnerPayment class="col-7" />
-      <RestaurantOwnerOrders @completedItem="completedItem" />
+      <RestaurantOwnerPayment class="col-12 col-md-5 col-lg-6" />
+      <RestaurantOwnerOrders
+        class="col-12 col-md-7 col-lg-6"
+        @completedItem="completedItem"
+      />
     </section>
   </div>
 </template>
@@ -41,4 +50,9 @@ const completedItem = (id: string) => {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.total-amount h2 {
+  color: white;
+  margin: 0;
+}
+</style>

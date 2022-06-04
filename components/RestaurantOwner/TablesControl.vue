@@ -1,6 +1,6 @@
 <template>
   <div v-if="tables">
-    <h2>Owner</h2>
+    <h2>Tables</h2>
     <div
       v-for="table in tables"
       :key="table.id"
