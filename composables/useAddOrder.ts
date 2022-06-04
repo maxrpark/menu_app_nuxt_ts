@@ -2,7 +2,6 @@ import { updateDoc, doc, addDoc, collection } from 'firebase/firestore';
 
 import { db } from '../firebase/config';
 
-// const useAddOrder = (comida: any, tableID: any, amount: number, id: any) => {
 const useAddOrder = async (
   comida: any,
   table: any,
@@ -20,7 +19,7 @@ const useAddOrder = async (
       }
       return item;
     });
-    updateDoc(docRef, {
+    await updateDoc(docRef, {
       order: tempCart,
     });
   } else {
@@ -32,17 +31,20 @@ const useAddOrder = async (
       total: comida.price * amount,
     };
 
-    let sendOrder = {
-      name: comida.name,
-      isCompleted: false,
-      amount: amount,
-    };
-
-    const colRef = collection(db, 'orders');
-    await addDoc(colRef, sendOrder);
     await updateDoc(docRef, {
       order: [...table.order, orderItem],
     });
   }
+  let sendOrder = {
+    table_name: table.name,
+    name: comida.name,
+    isCompleted: false,
+    amount: amount,
+  };
+
+  console.log(sendOrder);
+
+  const colRef = collection(db, 'orders');
+  await addDoc(colRef, sendOrder);
 };
 export default useAddOrder;

@@ -2,7 +2,7 @@
   <section class="d-flex justify-content-center align-items-center">
     <div class="modal-content bg-light p-4 m-4 container">
       <div
-        @click="restaurantStore.closeModal"
+        @click="restaurantStore.CLOSE_MODAL"
         class="d-flex justify-content-end"
       >
         <IconsClose />

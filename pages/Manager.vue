@@ -3,37 +3,15 @@
     <h2>Total amount</h2>
     <section class="row">
       <RestaurantOwnerTablesControl
+        @handleOwnerTableClick="handleOwnerTableClick"
         class="col"
         :tables="restaurantStore.tables"
       />
-      <RestaurantOwnerTablesControl
-        class="col-5"
-        :tables="restaurantStore.tables"
-      />
+      <RestaurantOwnerSelectedTable class="col-5" />
     </section>
     <section class="row">
-      <RestaurantOwnerTablesControl
-        class="col-7"
-        :tables="restaurantStore.tables"
-      />
-      <div class="col">
-        <h2>Orders</h2>
-        <div
-          class="d-flex justify-content-between align-items-center m-0 text-light p-2 bg-danger height-100"
-          :style="{ height: '30px' }"
-          v-for="order in orders"
-          :key="order.id"
-          @click="completedItem(order.id)"
-        >
-          <p>
-            {{ order.name }}
-          </p>
-          <p>
-            {{ order.amount }}
-          </p>
-          <p>complete</p>
-        </div>
-      </div>
+      <RestaurantOwnerPayment class="col-7" />
+      <RestaurantOwnerOrders @completedItem="completedItem" />
     </section>
   </div>
 </template>
@@ -41,9 +19,21 @@
 <script setup lang="ts">
 import { useRestaurantStore } from '~~/store/restaurant';
 import { db } from '../firebase/config';
-import { doc, deleteDoc } from 'firebase/firestore';
+import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { TableInterface } from '../ts/interfaces/globalInterfaces';
 let restaurantStore = useRestaurantStore();
-const { documents: orders } = getCollection('orders');
+
+const handleOwnerTableClick = (table: TableInterface) => {
+  // @ts-ignore: Unreachable code error
+  const docRef = doc(db, 'tables', table.id);
+  restaurantStore.selectedTable = {} as TableInterface;
+  updateDoc(docRef, {
+    available: !table.available,
+    number_of_guests: 0,
+    order: [],
+    total_amount: 0,
+  });
+};
 
 const completedItem = (id: string) => {
   const docRef = doc(db, 'orders', id);

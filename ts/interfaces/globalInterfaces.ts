@@ -1,6 +1,6 @@
 export interface OrderInterface {
   id: number | string;
-  comida: string;
+  name: string;
   price: number;
   amount: number;
   isCompleted?: boolean;

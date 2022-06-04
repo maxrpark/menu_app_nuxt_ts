@@ -2,7 +2,11 @@
   <div v-if="restaurantStore.custumerTable">
     <TableHero />
     <TableDetail />
-    <TableOrdersDetails />
+    <TableOrdersDetails
+      v-if="restaurantStore.custumerTable.order"
+      :orders="restaurantStore.custumerTable.order"
+      :total="restaurantStore.custumerTable.total_amount"
+    />
     <h1>Total: ${{ restaurantStore.custumerTable.total_amount }}</h1>
     <TableFiltersOptions />
     <MenuItems />
@@ -14,8 +18,10 @@ import { db } from '../../firebase/config';
 import { updateDoc, doc } from 'firebase/firestore';
 import { TableInterface } from '../../ts/interfaces/globalInterfaces';
 import { useRestaurantStore } from '~~/store/restaurant';
+
 let restaurantStore = useRestaurantStore();
 let pageRoute = useRoute();
+
 getCollection('tables', ['id', '==', pageRoute.params.tableID]);
 
 watch(

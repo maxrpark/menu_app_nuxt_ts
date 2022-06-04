@@ -59,7 +59,7 @@ export const useRestaurantStore = defineStore({
     },
   },
   actions: {
-    addToOder(id: number) {
+    ADD_ITEM_TO_ORDER(id: number) {
       this.selected_menu = id;
       if (this.selected_menu === id) {
         this.showAmount = true;
@@ -86,25 +86,24 @@ export const useRestaurantStore = defineStore({
     custumberTable(data: any) {
       this.custumerTable = data;
     },
-    handleTableClick(table: TableInterface) {
+    HANDLE_TABLE_CLICK(table: TableInterface) {
       if (table.available) {
         this.selectedTable = table;
         this.isTableSelected = true;
         document.body.style.overflow = 'hidden';
       }
     },
-    closeModal() {
+    CLOSE_MODAL() {
       this.isTableSelected = false;
       document.body.style.overflow = 'auto';
     },
 
-    managerTableDetails(id: string) {
+    MANAGER_TABLE_DETAILS(id: string) {
       let selectedTable = this.tables.find(
         (item: TableInterface) => item.id === id
       );
       if (selectedTable) {
         this.selectedTable = selectedTable;
-        console.log(this.selectedTable);
       }
     },
   },

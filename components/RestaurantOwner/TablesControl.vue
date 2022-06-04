@@ -8,11 +8,23 @@
     >
       {{ table.name }} ||
       <p>{{ table.available ? 'available' : 'not available' }}</p>
-      <button @click="handleOwnerTableClick(table)" class="btn-primary">
-        {{ table.available ? 'available' : 'not available' }}
+      <button
+        @click="$emit('handleOwnerTableClick', table)"
+        class="btn-primary"
+      >
+        {{ table.available ? 'reserve' : 'clear' }}
       </button>
-      <button @click="store.managerTableDetails(table.id)" class="btn-primary">
+      <button
+        @click="store.MANAGER_TABLE_DETAILS(table.id)"
+        class="btn-primary"
+      >
         tables details
+      </button>
+      <button
+        @click="store.MANAGER_TABLE_DETAILS(table.id)"
+        class="btn-primary"
+      >
+        close table
       </button>
     </div>
   </div>
@@ -20,8 +32,6 @@
 
 <script setup lang="ts">
 import { TableInterface } from '../../ts/interfaces/globalInterfaces';
-import { db } from '@/firebase/config';
-import { doc, updateDoc } from 'firebase/firestore';
 import { useRestaurantStore } from '@/store/restaurant';
 const store = useRestaurantStore();
 
@@ -30,16 +40,7 @@ interface PropsInt {
 }
 const props = defineProps<PropsInt>();
 
-const handleOwnerTableClick = (table: TableInterface) => {
-  // @ts-ignore: Unreachable code error
-  const docRef = doc(db, 'tables', table.id);
-  updateDoc(docRef, {
-    available: !table.available,
-    number_of_guests: 0,
-    order: [],
-    total_amount: 0,
-  });
-};
+const emit = defineEmits(['handleOwnerTableClick']);
 </script>
 
 <style scoped></style>

@@ -8,6 +8,7 @@
     "netlify": "netlify dev"
   },
   "devDependencies": {
+    "@types/bootstrap": "^5.1.12",
     "netlify-cli": "^10.3.1",
     "nuxt": "3.0.0-rc.3"
   },

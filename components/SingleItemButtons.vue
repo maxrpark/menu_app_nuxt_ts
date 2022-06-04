@@ -18,8 +18,6 @@
 <script setup lang="ts">
 import { useRestaurantStore } from '../store/restaurant';
 import { Menu } from '../ts/interfaces/globalInterfaces';
-// import { addDoc, collection } from 'firebase/firestore';
-// import { db } from '../firebase/config';
 interface Props {
   menu: Menu;
 }
@@ -38,15 +36,6 @@ const confirmOrder = (menu: Menu) => {
     menu_amount.value,
     pageRoute.params.tableID
   );
-
-  // let orderItem = {
-  //   comida: menu.name,
-  //   isCompleted: false,
-  //   amount: menu_amount.value,
-  // };
-
-  // const colRef = collection(db, 'orders');
-  // await addDoc(colRef, orderItem);
 
   menu_amount.value = 0;
   restaurantStore.showAmount = false;

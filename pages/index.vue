@@ -5,7 +5,7 @@
       <div v-for="table in restaurantStore.tables" :key="table.id" class="col">
         <SpecialCards
           :table="table"
-          @click="restaurantStore.handleTableClick(table)"
+          @click="restaurantStore.HANDLE_TABLE_CLICK(table)"
         />
       </div>
     </div>

@@ -10,7 +10,7 @@
 
       <button
         v-if="menu.id !== restaurantStore.selected_menu"
-        @click="restaurantStore.addToOder(menu.id)"
+        @click="restaurantStore.ADD_ITEM_TO_ORDER(menu.id)"
         class="btn btn-primary d-flex mx-auto"
       >
         Add to order
