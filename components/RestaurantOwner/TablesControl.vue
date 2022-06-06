@@ -1,5 +1,5 @@
 <template>
-  <section v-if="tables">
+  <section v-if="tables" class="shadow p-3">
     <h2>Tables</h2>
     <div
       v-for="table in tables"

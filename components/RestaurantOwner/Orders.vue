@@ -1,5 +1,5 @@
 <template>
-  <div class="col">
+  <div class="col shadow p-3">
     <h2>Orders</h2>
     <div
       class="row m-0 text-light p-2 bg-danger"

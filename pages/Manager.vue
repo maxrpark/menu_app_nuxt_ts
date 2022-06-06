@@ -1,28 +1,24 @@
 <template>
   <div class="container">
     <Hero :props="heroInfo" />
-    <div
-      class="d-flex justify-content-between align-items-center my-3 bg-success total-amount p-2"
-    >
-      <h2>Total Today</h2>
-      <h2>${{ restaurantStore.GET_RESTAURANT_DAILY_TOTALS() }}</h2>
-    </div>
+    <RestaurantOwnerTotalSales />
+
     <section class="row">
       <RestaurantOwnerTablesControl
         @reserveOrClearTable="reserveOrClearTable"
-        class="col-12 col-md-5 col-lg-6"
+        class="col-12 col-md-5 col-lg-5"
         :tables="restaurantStore.tables"
       />
-      <RestaurantOwnerSelectedTable class="col-12 col-md-7 col-lg-6" />
+      <RestaurantOwnerSelectedTable class="col-12 col-md-6 col-lg-6" />
     </section>
 
     <section class="row">
       <RestaurantOwnerPayment
         @clearTable="reserveOrClearTable"
-        class="col-12 col-md-5 col-lg-6"
+        class="col-12 col-md-5 col-lg-5"
       />
       <RestaurantOwnerOrders
-        class="col-12 col-md-7 col-lg-6"
+        class="col-12 col-md-6 col-lg-6"
         @completedItem="completedItem"
       />
     </section>
@@ -69,5 +65,10 @@ const completedItem = (id: string) => {
 .total-amount h2 {
   color: white;
   margin: 0;
+}
+.row {
+  gap: 1rem;
+  justify-content: center;
+  margin: 1rem auto;
 }
 </style>

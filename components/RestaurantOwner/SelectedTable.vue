@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="shadow p-3">
     <h2 class="text-capitalize">Table: {{ store.selectedTable.name }}</h2>
     <div class="section" v-if="store.selectedTable.order">
       <TableOrdersDetails

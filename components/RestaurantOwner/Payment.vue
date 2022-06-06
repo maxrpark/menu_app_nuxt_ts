@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="shadow p-3">
     <h2>Checkout</h2>
     <div v-if="store.table_check_out && store.selectedTable.order">
       <h3>Table resume</h3>
