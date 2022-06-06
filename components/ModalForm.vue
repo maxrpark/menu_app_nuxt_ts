@@ -9,7 +9,7 @@
       >
         <option
           class="text-center"
-          v-for="(seat, idx) in store.selectedTable.number_of_seats"
+          v-for="(seat, idx) in store.custumerTable.number_of_seats"
           :key="idx"
         >
           {{ seat }}

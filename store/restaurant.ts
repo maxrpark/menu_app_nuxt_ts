@@ -18,6 +18,10 @@ export const useRestaurantStore = defineStore({
       selected_menu: '' as string | number,
       showAmount: false,
       isTableSelected: false,
+
+      ///
+      table_check_out: false,
+      restaurante_orders: [] as any[],
     };
   },
   getters: {
@@ -54,8 +58,16 @@ export const useRestaurantStore = defineStore({
       }
     },
     tableDescription: () => (des: string) => {
-      var regex = /[B]/g;
+      var regex = /MB/g;
       return des.replace(regex, '<br/>');
+    },
+    GET_RESTAURANT_DAILY_TOTALS: (state) => () => {
+      // let currentDateOrders = state.restaurante_orders.filter((order) => {
+      //   return order.date === date;
+      // });
+      return state.restaurante_orders.reduce((acc, curr) => {
+        return acc + curr.total_amount;
+      }, 0);
     },
   },
   actions: {
@@ -67,28 +79,29 @@ export const useRestaurantStore = defineStore({
         this.showAmount = false;
       }
     },
-    fetch() {
-      const data = $fetch(`http://localhost:8888/api/products/`).then(
-        (res: any) => {
-          this.menu = res;
-          this.filtered_menu = res;
-          let category_list: string[] = res.map((item: Menu) => {
-            return item.category;
-          });
-          this.categories = ['all', ...new Set(category_list)];
-        }
-      );
+    FETCH_MENU_ITEMS() {
+      $fetch(`http://localhost:8888/api/products/`).then((res: any) => {
+        this.menu = res;
+        this.filtered_menu = res;
+        let category_list: string[] = res.map((item: Menu) => {
+          return item.category;
+        });
+        this.categories = ['all', ...new Set(category_list)];
+      });
     },
 
-    setTables(data: any) {
+    setTables(data: TableInterface[]) {
       this.tables = data;
     },
-    custumberTable(data: any) {
+    custumberTable(data: TableInterface) {
       this.custumerTable = data;
+    },
+    CHECKOUT_ORDERS(data: any) {
+      this.restaurante_orders = data;
     },
     HANDLE_TABLE_CLICK(table: TableInterface) {
       if (table.available) {
-        this.selectedTable = table;
+        this.custumerTable = table;
         this.isTableSelected = true;
         document.body.style.overflow = 'hidden';
       }
@@ -105,6 +118,9 @@ export const useRestaurantStore = defineStore({
       if (selectedTable) {
         this.selectedTable = selectedTable;
       }
+    },
+    TABLE_CHECK_OUT() {
+      this.table_check_out = true;
     },
   },
 });

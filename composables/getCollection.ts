@@ -19,10 +19,15 @@ const getCollection = (c: string, q?: any) => {
       results.push({ ...doc.data(), id: doc.id });
     });
     // update values
-    if (q) {
-      store.custumberTable(results[0]);
-    } else if (c === 'tables') {
-      store.setTables(results);
+
+    if (c === 'tables') {
+      if (q === undefined) {
+        store.setTables(results);
+      } else {
+        store.custumberTable(results[0]);
+      }
+    } else if (c === 'checkout_orders') {
+      store.CHECKOUT_ORDERS(results);
     }
     documents.value = results;
     isLoading.value = false;

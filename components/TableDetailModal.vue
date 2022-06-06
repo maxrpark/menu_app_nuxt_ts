@@ -8,9 +8,9 @@
         <IconsClose />
       </div>
 
-      <div class="table-info" v-if="restaurantStore.selectedTable.name">
+      <div class="table-info" v-if="restaurantStore.custumerTable.name">
         <h2 class="text-center">
-          Table: {{ restaurantStore.selectedTable.name }}
+          Table: {{ restaurantStore.custumerTable.name }}
         </h2>
       </div>
       <ModalForm @handleSubmit="handleSubmit" />
@@ -27,16 +27,16 @@ let router = useRouter();
 
 const handleSubmit = (numberOfPersons: string) => {
   // @ts-ignore: Unreachable code error
-  const docRef = doc(db, 'tables', restaurantStore.selectedTable.id);
+  const docRef = doc(db, 'tables', restaurantStore.custumerTable.id);
   if (+numberOfPersons > 0) {
     updateDoc(docRef, {
-      available: !restaurantStore.selectedTable.available,
+      available: !restaurantStore.custumerTable.available,
       number_of_guests: parseInt(numberOfPersons),
     });
     restaurantStore.isTableSelected = false;
     document.body.style.overflow = 'auto';
     router.push({
-      path: `/table/${restaurantStore.selectedTable.id}`,
+      path: `/table/${restaurantStore.custumerTable.id}`,
     });
   } else {
     console.log('please select number of guess');

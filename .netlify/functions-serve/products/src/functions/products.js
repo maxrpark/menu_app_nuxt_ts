@@ -4451,7 +4451,6 @@ var require_src = __commonJS({
 require_main().config();
 var Airtable = require_src();
 var airtable = new Airtable({ apiKey: "keyA1ZW1x3n5MasrB" }).base("apptyrbqU499FHLlN").table("products");
-console.log();
 exports.handler = async () => {
   try {
     const { records } = await airtable.list();

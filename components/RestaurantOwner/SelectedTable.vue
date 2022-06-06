@@ -1,11 +1,16 @@
 <template>
   <div>
-    <h2>Table: {{ store.selectedTable.name }}</h2>
-    <TableOrdersDetails
-      v-if="store.selectedTable.order"
-      :orders="store.selectedTable.order"
-      :total="store.selectedTable.total_amount"
-    />
+    <h2 class="text-capitalize">Table: {{ store.selectedTable.name }}</h2>
+    <div class="section" v-if="store.selectedTable.order">
+      <TableOrdersDetails
+        class="my-3"
+        :orders="store.selectedTable.order"
+        :total="store.selectedTable.total_amount"
+      />
+      <button @click="store.TABLE_CHECK_OUT" class="btn btn-primary">
+        Close table
+      </button>
+    </div>
   </div>
 </template>
 

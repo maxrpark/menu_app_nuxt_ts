@@ -35,7 +35,7 @@ p {
 }
 .title p {
   margin: 0;
-  padding: 1rem;
+  padding: 0.9rem;
   color: white;
 }
 </style>

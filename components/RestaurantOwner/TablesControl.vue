@@ -1,33 +1,49 @@
 <template>
-  <div v-if="tables">
+  <section v-if="tables">
     <h2>Tables</h2>
     <div
       v-for="table in tables"
       :key="table.id"
-      :class="`${table.available ? 'available' : 'not-available'}`"
+      :class="`${table.available ? 'bg-success' : 'bg-danger'}`"
+      class="d-flex justify-content-between align-items-center my-3 total-amount p-2"
     >
-      {{ table.name }} ||
-      <p>{{ table.available ? 'available' : 'not available' }}</p>
-      <button
-        @click="$emit('handleOwnerTableClick', table)"
-        class="btn-primary"
-      >
-        {{ table.available ? 'reserve' : 'clear' }}
-      </button>
-      <button
-        @click="store.MANAGER_TABLE_DETAILS(table.id)"
-        class="btn-primary"
-      >
-        tables details
-      </button>
-      <button
-        @click="store.MANAGER_TABLE_DETAILS(table.id)"
-        class="btn-primary"
-      >
-        close table
-      </button>
+      <p class="m-0 text-capitalize text-light">
+        {{ table.name }}
+      </p>
+      <div class="buttons">
+        <div class="dropdown">
+          <button
+            class="btn btn-secondary dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            @click="store.table_check_out = false"
+          >
+            Options
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li v-if="!table.available">
+              <button
+                @click="store.MANAGER_TABLE_DETAILS(table.id)"
+                class="dropdown-item"
+              >
+                Tables details
+              </button>
+            </li>
+            <li>
+              <button
+                @click="$emit('reserveOrClearTable', table)"
+                class="dropdown-item"
+              >
+                {{ table.available ? 'Reserve' : 'Clear' }}
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -40,7 +56,7 @@ interface PropsInt {
 }
 const props = defineProps<PropsInt>();
 
-const emit = defineEmits(['handleOwnerTableClick']);
+const emit = defineEmits(['reserveOrClearTable']);
 </script>
 
 <style scoped></style>

@@ -38,6 +38,11 @@ const props = defineProps<Props>();
 .card {
   transition: all 0.3s linear;
 }
+
+.card img {
+  height: 235px;
+  object-fit: cover;
+}
 .card:hover {
   box-shadow: 0px 0px 20px #000;
   transform: scale(1.02);

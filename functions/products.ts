@@ -5,12 +5,23 @@ const airtable = new Airtable({ apiKey: 'keyA1ZW1x3n5MasrB' })
   .base('apptyrbqU499FHLlN')
   .table('products');
 
-console.log();
+interface Product {
+  id: string;
+  fields: {
+    name: string;
+    desc: string;
+    price: string;
+    category: string;
+    url: string;
+    image: any;
+    tags: string;
+  };
+}
 
 exports.handler = async () => {
   try {
     const { records } = await airtable.list();
-    const products = records.map((product: any) => {
+    const products = records.map((product: Product) => {
       const { id } = product;
       const { name, desc, image, price, category, tags } = product.fields;
       const url = image[0].url;

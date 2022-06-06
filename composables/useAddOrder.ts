@@ -1,12 +1,12 @@
 import { updateDoc, doc, addDoc, collection } from 'firebase/firestore';
-
+import { TableInterface, Menu } from '../ts/interfaces/globalInterfaces';
 import { db } from '../firebase/config';
 
 const useAddOrder = async (
-  comida: any,
-  table: any,
+  comida: Menu,
+  table: TableInterface,
   amount: number,
-  id: any
+  id: string
 ) => {
   const docRef = doc(db, 'tables', id);
   const tempItem = table.order.find((i: any) => i.id === comida.id);
@@ -41,8 +41,6 @@ const useAddOrder = async (
     isCompleted: false,
     amount: amount,
   };
-
-  console.log(sendOrder);
 
   const colRef = collection(db, 'orders');
   await addDoc(colRef, sendOrder);
