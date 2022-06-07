@@ -39,7 +39,7 @@ const handleSubmit = (numberOfPersons: string) => {
       path: `/table/${restaurantStore.custumerTable.id}`,
     });
   } else {
-    console.log('please select number of guess');
+    console.log('please select number of guess!');
   }
 };
 </script>
