@@ -11524,7 +11524,7 @@
   "resolved" "https://registry.npmjs.org/pify/-/pify-4.0.1.tgz"
   "version" "4.0.1"
 
-"pinia@>=2.0.14":
+"pinia@^2.0.14", "pinia@>=2.0.14":
   "integrity" "sha512-0nPuZR4TetT/WcLN+feMSjWJku3SQU7dBbXC6uw+R6FLQJCsg+/0pzXyD82T1FmAYe0lsx+jnEDQ1BLgkRKlxA=="
   "resolved" "https://registry.npmjs.org/pinia/-/pinia-2.0.14.tgz"
   "version" "2.0.14"
