@@ -100,11 +100,11 @@ export const useRestaurantStore = defineStore({
       this.restaurante_orders = data;
     },
     HANDLE_TABLE_CLICK(table: TableInterface) {
-      if (table.available) {
-        this.custumerTable = table;
-        this.isTableSelected = true;
-        document.body.style.overflow = 'hidden';
-      }
+      // if (table.available) {
+      this.custumerTable = table;
+      this.isTableSelected = true;
+      document.body.style.overflow = 'hidden';
+      // }
     },
     CLOSE_MODAL() {
       this.isTableSelected = false;

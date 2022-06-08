@@ -1,6 +1,6 @@
 <template>
   <div class="shadow p-3">
-    <h2 class="text-capitalize">Table: {{ store.selectedTable.name }}</h2>
+    <h2 class="text-capitalize text-center">{{ title }}</h2>
     <div class="section" v-if="store.selectedTable.order">
       <TableOrdersDetails
         class="my-3"
@@ -17,6 +17,12 @@
 <script setup lang="ts">
 import { useRestaurantStore } from '~~/store/restaurant';
 const store = useRestaurantStore();
+
+let title = computed(() => {
+  return store.selectedTable.name
+    ? `Table: ${store.selectedTable.name}`
+    : 'No table selected';
+});
 </script>
 
 <style scoped></style>

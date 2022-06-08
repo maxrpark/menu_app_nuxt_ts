@@ -7,10 +7,10 @@
       :key="typeItem"
     >
       <p
-        class="nav-link d-flex align-items-center m-0"
+        class="nav-link d-flex align-items-center m-0 text-capitalize"
         :class="[typeItem === selectedType ? 'active' : '']"
       >
-        {{ typeItem }}
+        {{ typeItem.replace('-', ' ') }}
       </p>
     </li>
   </ul>

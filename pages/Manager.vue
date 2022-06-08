@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="restaurantStore.tables.length">
     <Hero :props="heroInfo" />
     <RestaurantOwnerTotalSales />
 
@@ -23,6 +23,7 @@
       />
     </section>
   </div>
+  <Spinner v-else />
 </template>
 
 <script setup lang="ts">

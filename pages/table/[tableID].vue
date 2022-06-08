@@ -1,8 +1,10 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="restaurantStore.filtered_menu.length">
     <TableHero />
-    <TableFiltersOptions />
-    <MenuItems />
+    <div>
+      <TableFiltersOptions />
+      <MenuItems />
+    </div>
 
     <!-- <button type="button" class="btn btn-primary" id="liveToastBtn">
       Show live toast
@@ -31,6 +33,7 @@
       </div>
     </div> -->
   </div>
+  <Spinner v-else />
 </template>
 
 <script setup="" lang="ts">

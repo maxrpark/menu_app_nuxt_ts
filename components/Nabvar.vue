@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-light navbar-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Navbar</a>
+    <div class="container-md">
+      <NuxtLink class="navbar-brand" to="/">Menu App</NuxtLink>
       <button
         class="navbar-toggler"
         type="button"
@@ -14,7 +14,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul
+          class="navbar-nav me-auto mb-2 mb-lg-0 nav-lg w-100 justify-content-end"
+        >
           <li class="nav-item active">
             <NuxtLink class="nav-link" to="/">Home</NuxtLink>
           </li>

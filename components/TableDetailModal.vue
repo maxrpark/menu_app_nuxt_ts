@@ -1,5 +1,5 @@
 <template>
-  <section class="d-flex justify-content-center align-items-center">
+  <section class="d-flex justify-content-center align-items-center modal">
     <div class="modal-content bg-light p-4 m-4 container">
       <div
         @click="restaurantStore.CLOSE_MODAL"
@@ -13,7 +13,13 @@
           Table: {{ restaurantStore.custumerTable.name }}
         </h2>
       </div>
-      <ModalForm @handleSubmit="handleSubmit" />
+      <div v-if="!restaurantStore.custumerTable.available">
+        <h5 class="text-center my-3">
+          Table not <span class="text-danger">available</span>, <br />
+          please select another one.
+        </h5>
+      </div>
+      <ModalForm v-else @handleSubmit="handleSubmit" />
     </div>
   </section>
 </template>
