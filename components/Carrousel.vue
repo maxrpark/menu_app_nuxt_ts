@@ -30,7 +30,7 @@
           alt="..."
         />
         <div class="carousel-caption d-none d-md-block">
-          <h5>{{ table.name }}</h5>
+          <h2>{{ table.name }}</h2>
           <p>{{ table.desc }}</p>
         </div>
       </div>

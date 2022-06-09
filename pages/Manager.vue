@@ -1,6 +1,6 @@
 <template>
   <div class="container" v-if="restaurantStore.tables.length">
-    <Hero :props="heroInfo" />
+    <SectionTitle :props="heroInfo" />
     <RestaurantOwnerTotalSales />
 
     <section class="row">

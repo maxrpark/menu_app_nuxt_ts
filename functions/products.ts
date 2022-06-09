@@ -20,7 +20,7 @@ interface Product {
 
 exports.handler = async () => {
   try {
-    const { records } = await airtable.list();
+    const { records } = await airtable.list({ maxRecords: 100 });
     const products = records.map((product: Product) => {
       const { id } = product;
       const { name, desc, image, price, category, tags } = product.fields;

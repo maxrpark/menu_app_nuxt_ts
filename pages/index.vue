@@ -1,6 +1,6 @@
 <template>
   <div class="container" v-if="restaurantStore.tables.length">
-    <Hero :props="heroInfo" />
+    <SectionTitle :props="heroInfo" />
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
       <div v-for="table in restaurantStore.tables" :key="table.id" class="col">
         <SpecialCards
@@ -9,10 +9,10 @@
         />
       </div>
     </div>
-    <Hero :props="features" />
+    <SectionTitle :props="features" />
     <TableDetailModal v-if="restaurantStore.isTableSelected" />
     <IconGrid />
-    <Hero :props="carouselText" />
+    <SectionTitle :props="carouselText" />
     <Carrousel />
   </div>
   <Spinner v-else />

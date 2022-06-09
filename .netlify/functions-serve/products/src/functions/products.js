@@ -4454,7 +4454,7 @@ console.log(process.env.KEY);
 var airtable = new Airtable({ apiKey: process.env.KEY }).base("apptyrbqU499FHLlN").table("products");
 exports.handler = async () => {
   try {
-    const { records } = await airtable.list();
+    const { records } = await airtable.list({ maxRecords: 100 });
     const products = records.map((product) => {
       const { id } = product;
       const { name, desc, image, price, category, tags } = product.fields;
