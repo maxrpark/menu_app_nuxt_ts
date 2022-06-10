@@ -1,4 +1,13 @@
 <template>
+  <span
+    class="text-success text-center d-block mt-2"
+    v-if="
+      restaurantStore.showOrderMessege &&
+      menu.id == restaurantStore.selected_menu
+    "
+  >
+    Menu added to orders
+  </span>
   <div
     v-if="
       restaurantStore.showAmount && menu.id === restaurantStore.selected_menu
@@ -34,12 +43,12 @@ const confirmOrder = (menu: Menu) => {
     menu,
     restaurantStore.custumerTable,
     menu_amount.value,
-    pageRoute.params.tableID
+    pageRoute.params.tableID as string
   );
-
+  restaurantStore.SHOW_ADDED_ORDER_MESSEGE();
+  restaurantStore.SHOW_TOAST_MESSEGE(menu.name, menu_amount.value);
   menu_amount.value = 0;
   restaurantStore.showAmount = false;
-  restaurantStore.selected_menu = '';
 };
 </script>
 

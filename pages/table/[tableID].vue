@@ -5,17 +5,7 @@
       <TableFiltersOptions />
       <MenuItems />
     </div>
-
     <Toast />
-    <button
-      type="button"
-      class="btn btn-primary"
-      id="liveToastBtn"
-      ref="liveToastBtn"
-      @click="showToast"
-    >
-      Show live toast
-    </button>
   </div>
   <Spinner v-else />
 </template>
@@ -50,18 +40,6 @@ watch(
     });
   }
 );
-
-// const toastTrigger = document.getElementById('liveToastBtn');
-
-// const toastTrigger = ref(null)!;
-// const toastLiveExample = ref(null)!;
-
-const showToast = () => {
-  const toastLiveExample = document.getElementById('liveToast')!;
-  // @ts-ignore: Unreachable code error
-  const toast = new bootstrap.Toast(toastLiveExample);
-  toast.show();
-};
 </script>
 
 <style scoped></style>

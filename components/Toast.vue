@@ -6,7 +6,7 @@
       role="alert"
       aria-live="assertive"
       aria-atomic="true"
-      data-delay="1000000"
+      data-delay="10"
     >
       <div class="toast-header">
         <strong class="me-auto">Menu App</strong>
@@ -18,11 +18,18 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="toast-body">Added to Order</div>
+      <div class="toast-body">
+        {{ store.toastMessege.amount }} {{ store.toastMessege.menuName }} Added
+        to Orders
+      </div>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRestaurantStore } from '~~/store/restaurant';
+
+let store = useRestaurantStore();
+</script>
 
 <style scoped></style>

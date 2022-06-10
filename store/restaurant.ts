@@ -1,5 +1,9 @@
 import { defineStore } from 'pinia';
-import { TableInterface, Menu } from '../ts/interfaces/globalInterfaces';
+import {
+  TableInterface,
+  Menu,
+  ToastMessege,
+} from '../ts/interfaces/globalInterfaces';
 export const useRestaurantStore = defineStore({
   id: 'restaurant-store',
   state: () => {
@@ -18,6 +22,12 @@ export const useRestaurantStore = defineStore({
       selected_menu: '' as string | number,
       showAmount: false,
       isTableSelected: false,
+      showOrderMessege: false,
+
+      toastMessege: {
+        menuName: '',
+        amount: 0,
+      } as ToastMessege,
 
       ///
       table_check_out: false,
@@ -72,6 +82,7 @@ export const useRestaurantStore = defineStore({
   },
   actions: {
     ADD_ITEM_TO_ORDER(id: number) {
+      // this.showOrderMessege = false;
       this.selected_menu = id;
       if (this.selected_menu === id) {
         this.showAmount = true;
@@ -80,6 +91,7 @@ export const useRestaurantStore = defineStore({
       }
     },
     FETCH_MENU_ITEMS() {
+      // $fetch(`/api/products/`).then((res: any) => {
       $fetch(`http://localhost:8888/api/products/`).then((res: any) => {
         this.menu = res;
         this.filtered_menu = res;
@@ -119,6 +131,30 @@ export const useRestaurantStore = defineStore({
         this.selectedTable = selectedTable;
       }
     },
+    SHOW_ADDED_ORDER_MESSEGE() {
+      this.showOrderMessege = true;
+      setTimeout(() => {
+        this.showOrderMessege = false;
+        this.selected_menu = '';
+      }, 1000);
+    },
+    SHOW_TOAST_MESSEGE(name: string, amount: number) {
+      this.toastMessege.menuName = name;
+      this.toastMessege.amount = amount;
+      let timeOut: number;
+      const showToast = () => {
+        const toastLiveExample = document.getElementById('liveToast')!;
+        // @ts-ignore: Unreachable code error
+        const toast = new bootstrap.Toast(toastLiveExample);
+        toast.show();
+        if (timeOut) clearTimeout(timeOut);
+        timeOut = window.setTimeout(() => {
+          toast.hide();
+        }, 3000);
+      };
+      showToast();
+    },
+
     TABLE_CHECK_OUT() {
       this.table_check_out = true;
     },

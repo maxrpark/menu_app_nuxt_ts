@@ -1,3 +1,7 @@
+export interface ToastMessege {
+  menuName: string;
+  amount: number;
+}
 export interface OrderInterface {
   id: number | string;
   name: string;
