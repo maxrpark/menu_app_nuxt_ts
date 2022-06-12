@@ -1,5 +1,4 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth } from '@firebase/auth';
 
 export default defineNuxtPlugin((nuxtApp) => {
   const firebaseConfig = {
@@ -11,9 +10,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     appId: '1:569273184241:web:b30371b8b4478250125e50',
   };
 
-  const app = initializeApp(firebaseConfig);
+  initializeApp(firebaseConfig);
 
   unitUser();
-
-  // console.log(auth);
 });

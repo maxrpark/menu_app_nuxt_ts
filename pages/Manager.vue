@@ -33,6 +33,9 @@ import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { TableInterface } from '../ts/interfaces/globalInterfaces';
 
 let restaurantStore = useRestaurantStore();
+setTimeout(() => {
+  console.log(restaurantStore.user);
+}, 1000);
 let heroInfo = reactive({
   title: 'Manager section',
   text: 'Restaurant dashboard',

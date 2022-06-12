@@ -38,3 +38,7 @@ export interface Menu {
   url: string;
   desc: string;
 }
+
+export interface User {
+  email: string;
+}

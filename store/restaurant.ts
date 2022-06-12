@@ -1,8 +1,10 @@
 import { defineStore } from 'pinia';
+
 import {
   TableInterface,
   Menu,
   ToastMessege,
+  User,
 } from '../ts/interfaces/globalInterfaces';
 export const useRestaurantStore = defineStore({
   id: 'restaurant-store',
@@ -22,7 +24,7 @@ export const useRestaurantStore = defineStore({
       showAmount: false,
       isTableSelected: false,
       showOrderMessege: false,
-      user: {} as any,
+      user: null,
 
       toastMessege: {
         menuName: '',
