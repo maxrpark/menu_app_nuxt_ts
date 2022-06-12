@@ -22,9 +22,9 @@ const getCollection = (c: string, q?: any) => {
 
     if (c === 'tables') {
       if (q === undefined) {
-        store.setTables(results);
+        store.SET_TABLES(results);
       } else {
-        store.custumberTable(results[0]);
+        store.CUSTUMER_TABLE(results[0]);
       }
     } else if (c === 'checkout_orders') {
       store.CHECKOUT_ORDERS(results);

@@ -39,10 +39,10 @@ export const useLogin = () => {
 
 export const unitUser = async () => {
   const auth = getAuth();
-  const userCookie = useCookie('userCookie');
+
   onAuthStateChanged(auth, (user) => {
     const store = useRestaurantStore();
-    store.user = user;
+    store.SET_USER(user);
     // @ts-ignore: Unreachable code error
     if (user) {
       const uid = user.uid;

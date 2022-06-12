@@ -34,10 +34,9 @@ interface Props {
 const props = defineProps<Props>();
 
 let restaurantStore = useRestaurantStore();
-
 let pageRoute = useRoute();
-const { handleIncrease, handleDecrease, menu_amount } = useMenuItems();
 
+const { handleIncrease, handleDecrease, menu_amount } = useMenuItems();
 const confirmOrder = (menu: Menu) => {
   useAddOrder(
     menu,

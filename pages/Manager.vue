@@ -31,7 +31,7 @@ import { useRestaurantStore } from '~~/store/restaurant';
 import { db } from '../firebase/config';
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { TableInterface } from '../ts/interfaces/globalInterfaces';
-import { scanMiddleware } from 'nitropack';
+
 let restaurantStore = useRestaurantStore();
 let heroInfo = reactive({
   title: 'Manager section',

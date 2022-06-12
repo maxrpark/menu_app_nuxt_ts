@@ -9,7 +9,6 @@ export const useRestaurantStore = defineStore({
   state: () => {
     return {
       tables: [] as TableInterface[],
-      max: 'max',
       custumerTable: {} as TableInterface,
       selectedTable: {} as TableInterface, // check if not same with custumerTable
       categories: [] as string[],
@@ -24,7 +23,6 @@ export const useRestaurantStore = defineStore({
       isTableSelected: false,
       showOrderMessege: false,
       user: {} as any,
-      isLoggedIn: false,
 
       toastMessege: {
         menuName: '',
@@ -104,10 +102,10 @@ export const useRestaurantStore = defineStore({
       });
     },
 
-    setTables(data: TableInterface[]) {
+    SET_TABLES(data: TableInterface[]) {
       this.tables = data;
     },
-    custumberTable(data: TableInterface) {
+    CUSTUMER_TABLE(data: TableInterface) {
       this.custumerTable = data;
     },
     CHECKOUT_ORDERS(data: any) {
@@ -159,6 +157,10 @@ export const useRestaurantStore = defineStore({
 
     TABLE_CHECK_OUT() {
       this.table_check_out = true;
+    },
+
+    SET_USER(user: any) {
+      this.user = user;
     },
   },
 });
