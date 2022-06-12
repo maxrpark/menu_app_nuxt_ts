@@ -16,6 +16,14 @@ export interface orderDetail {
   isCompleted: boolean;
   amount: number;
 }
+
+export interface checkOutOrder {
+  createdAt: string;
+  date: string;
+  table_id: string;
+  total_amount: number;
+  order: OrderInterface[];
+}
 export interface TableInterface {
   id: string;
   available: boolean;
@@ -23,7 +31,7 @@ export interface TableInterface {
   image: string;
   desc: string;
   number_of_seats: string;
-  order: OrderInterface[] | any; //fix
+  order: OrderInterface[];
   number_of_guests: number;
   total_amount: number; //fix
   total: number;
@@ -37,8 +45,4 @@ export interface Menu {
   tags: string[];
   url: string;
   desc: string;
-}
-
-export interface User {
-  email: string;
 }

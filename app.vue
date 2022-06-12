@@ -5,7 +5,8 @@
       <Meta name="description" content="The best Menu App"></Meta>
     </Head>
   </Html>
-  <div>
+  <Spinner v-if="store.appLoading" />
+  <div v-else>
     <Nabvar />
     <main>
       <NuxtPage />
@@ -15,6 +16,8 @@
 </template>
 
 <script setup lang="ts">
+import { useRestaurantStore } from './store/restaurant';
+let store = useRestaurantStore();
 getCollection('tables');
 </script>
 

@@ -8,7 +8,11 @@
         :orders="store.selectedTable.order"
         :total="store.selectedTable.total_amount"
       />
-      <button class="btn-primary" @click="handleCheckOut">checkout</button>
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-primary text-uppercase" @click="handleCheckOut">
+          confirm checkout
+        </button>
+      </div>
     </div>
   </div>
 </template>

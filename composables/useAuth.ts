@@ -20,7 +20,7 @@ const login = async (email: string, password: string) => {
     if (!res) {
       throw new Error('Could not login');
     }
-  } catch (err: any | Error) {
+  } catch (err: any) {
     //fix
 
     error.value = err.message;
@@ -43,12 +43,22 @@ export const unitUser = async () => {
   onAuthStateChanged(auth, (user) => {
     const store = useRestaurantStore();
     store.SET_USER(user);
+    store.appLoading = true;
+    console.log(store.appLoading);
     // @ts-ignore: Unreachable code error
     if (user) {
       const uid = user.uid;
+      let router = useRouter();
+      let route = useRoute();
+      console.log('user');
+      if (route.path === '/Login') {
+        router.push('/manager');
+      }
     } else {
       console.log('no user');
     }
+    store.appLoading = false;
+    console.log(store.appLoading);
   });
 };
 

@@ -4,7 +4,7 @@ import {
   TableInterface,
   Menu,
   ToastMessege,
-  User,
+  checkOutOrder,
 } from '../ts/interfaces/globalInterfaces';
 export const useRestaurantStore = defineStore({
   id: 'restaurant-store',
@@ -33,7 +33,9 @@ export const useRestaurantStore = defineStore({
 
       ///
       table_check_out: false,
-      restaurante_orders: [] as any[],
+      restaurante_orders: [] as checkOutOrder[],
+
+      appLoading: true,
     };
   },
   getters: {
@@ -74,9 +76,6 @@ export const useRestaurantStore = defineStore({
       return des.replace(regex, '<br/>');
     },
     GET_RESTAURANT_DAILY_TOTALS: (state) => () => {
-      // let currentDateOrders = state.restaurante_orders.filter((order) => {
-      //   return order.date === date;
-      // });
       return state.restaurante_orders.reduce((acc, curr) => {
         return acc + curr.total_amount;
       }, 0);
@@ -93,7 +92,6 @@ export const useRestaurantStore = defineStore({
       }
     },
     FETCH_MENU_ITEMS() {
-      // $fetch(`/api/products/`).then((res: any) => {
       $fetch(`http://localhost:8888/api/products/`).then((res: any) => {
         this.menu = res;
         this.filtered_menu = res;
@@ -110,7 +108,7 @@ export const useRestaurantStore = defineStore({
     CUSTUMER_TABLE(data: TableInterface) {
       this.custumerTable = data;
     },
-    CHECKOUT_ORDERS(data: any) {
+    CHECKOUT_ORDERS(data: checkOutOrder[]) {
       this.restaurante_orders = data;
     },
     HANDLE_TABLE_CLICK(table: TableInterface) {

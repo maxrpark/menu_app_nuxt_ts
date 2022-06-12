@@ -7,9 +7,14 @@
         :orders="store.selectedTable.order"
         :total="store.selectedTable.total_amount"
       />
-      <button @click="store.TABLE_CHECK_OUT" class="btn btn-primary">
-        Close table
-      </button>
+      <div class="d-flex justify-content-center">
+        <button
+          @click="store.TABLE_CHECK_OUT"
+          class="btn btn-primary text-uppercase"
+        >
+          Close table
+        </button>
+      </div>
     </div>
   </div>
 </template>

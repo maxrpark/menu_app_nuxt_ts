@@ -13,7 +13,10 @@
 <script setup="" lang="ts">
 import { db } from '../../firebase/config';
 import { updateDoc, doc } from 'firebase/firestore';
-import { TableInterface } from '../../ts/interfaces/globalInterfaces';
+import {
+  TableInterface,
+  OrderInterface,
+} from '../../ts/interfaces/globalInterfaces';
 import { useRestaurantStore } from '~~/store/restaurant';
 
 let restaurantStore = useRestaurantStore();
@@ -24,12 +27,12 @@ getCollection('tables', ['id', '==', pageRoute.params.tableID]);
 
 watch(
   () => restaurantStore.custumerTable,
-  (d: any) => {
+  (d: TableInterface) => {
     // @ts-ignore: Unreachable code error
     const docRef = doc(db, 'tables', pageRoute.params.tableID);
     restaurantStore.custumerTable.total_amount =
       restaurantStore.custumerTable.order.reduce(
-        (acc: number, item: TableInterface) => {
+        (acc: number, item: OrderInterface) => {
           return acc + item.total;
         },
         0
