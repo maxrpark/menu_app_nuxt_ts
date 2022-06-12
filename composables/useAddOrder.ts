@@ -1,5 +1,10 @@
 import { updateDoc, doc, addDoc, collection } from 'firebase/firestore';
-import { TableInterface, Menu } from '../ts/interfaces/globalInterfaces';
+import {
+  TableInterface,
+  Menu,
+  OrderInterface,
+  orderDetail,
+} from '../ts/interfaces/globalInterfaces';
 import { db } from '../firebase/config';
 
 const useAddOrder = async (
@@ -9,9 +14,9 @@ const useAddOrder = async (
   id: string
 ) => {
   const docRef = doc(db, 'tables', id);
-  const tempItem = table.order.find((i: any) => i.id === comida.id);
+  const tempItem = table.order.find((i: OrderInterface) => i.id === comida.id);
   if (tempItem) {
-    const tempCart = table.order.map((item: any) => {
+    const tempCart = table.order.map((item: OrderInterface) => {
       if (item.id === comida.id) {
         item.amount += amount;
         item.total = item.price * item.amount;
@@ -23,7 +28,7 @@ const useAddOrder = async (
       order: tempCart,
     });
   } else {
-    let orderItem = {
+    let orderItem: OrderInterface = {
       id: comida.id,
       name: comida.name,
       price: comida.price,
@@ -35,7 +40,7 @@ const useAddOrder = async (
       order: [...table.order, orderItem],
     });
   }
-  let sendOrder = {
+  let sendOrder: orderDetail = {
     table_name: table.name,
     name: comida.name,
     isCompleted: false,

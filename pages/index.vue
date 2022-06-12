@@ -1,6 +1,6 @@
 <template>
   <div class="container" v-if="restaurantStore.tables.length">
-    <SectionTitle :props="heroInfo" />
+    <SectionTitle :props="heroInfo" class="mt-5" />
     <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
       <div v-for="table in restaurantStore.tables" :key="table.id" class="col">
         <SpecialCards
@@ -23,8 +23,8 @@ import { useRestaurantStore } from '~~/store/restaurant';
 let restaurantStore = useRestaurantStore();
 
 let heroInfo = reactive({
-  title: 'Hello App',
-  text: 'Welcome to you best restaurant app',
+  title: 'Hello Menu App',
+  text: 'Welcome to the best restaurant experience',
 });
 let features = reactive({
   title: 'Checkout features',

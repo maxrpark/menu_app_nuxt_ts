@@ -23,6 +23,8 @@ export const useRestaurantStore = defineStore({
       showAmount: false,
       isTableSelected: false,
       showOrderMessege: false,
+      user: {} as any,
+      isLoggedIn: false,
 
       toastMessege: {
         menuName: '',

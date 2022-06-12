@@ -1,7 +1,7 @@
 <template>
   <Html>
     <Head>
-      <Title>Menu App</Title>
+      <!-- <Title>Menu App</Title> -->
       <Meta name="description" content="The best Menu App"></Meta>
     </Head>
   </Html>

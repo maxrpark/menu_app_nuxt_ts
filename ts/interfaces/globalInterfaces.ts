@@ -7,7 +7,14 @@ export interface OrderInterface {
   name: string;
   price: number;
   amount: number;
-  isCompleted?: boolean;
+  total: number;
+}
+
+export interface orderDetail {
+  table_name: string;
+  name: string;
+  isCompleted: boolean;
+  amount: number;
 }
 export interface TableInterface {
   id: string;

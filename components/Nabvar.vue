@@ -26,6 +26,13 @@
           <li class="nav-item">
             <NuxtLink class="nav-link" to="/manager">Manager</NuxtLink>
           </li>
+          <li v-if="!store.user" class="nav-item">
+            <NuxtLink class="nav-link" to="/login">login</NuxtLink>
+          </li>
+          <li v-if="store.user" class="nav-item">
+            {{ store.user.email }}
+          </li>
+          <li v-if="store.user" @click="logOutUser" class="nav-item">logout</li>
         </ul>
       </div>
     </div>
@@ -33,6 +40,10 @@
 </template>
 
 <script setup lang="ts">
+import { logOutUser } from '../composables/useAuth';
+import { useRestaurantStore } from '~~/store/restaurant';
+
+let store = useRestaurantStore();
 let expand = ref(false);
 </script>
 
