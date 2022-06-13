@@ -25,15 +25,8 @@ onMounted(() => {
 
 let restaurantStore = useRestaurantStore();
 
-if (!restaurantStore.tables.length) {
-  console.log('Loading tables...');
+if (!restaurantStore.filtered_menu.length) {
   restaurantStore.FETCH_MENU_ITEMS();
-  console.log(restaurantStore.tables);
-  console.log(restaurantStore.tables.length);
-} else {
-  console.log('Tables already loaded');
-  console.log(restaurantStore.tables);
-  console.log(restaurantStore.tables.length);
 }
 
 let pageRoute = useRoute();
