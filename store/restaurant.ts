@@ -92,7 +92,11 @@ export const useRestaurantStore = defineStore({
       }
     },
     FETCH_MENU_ITEMS() {
-      $fetch(`http://localhost:8888/api/products/`).then((res: any) => {
+      $fetch(
+        `https://menu-app-nuxt.netlify.app/.netlify/functions/products/`
+      ).then((res: any) => {
+        console.log(typeof res);
+        console.log(res);
         this.menu = res;
         this.filtered_menu = res;
         let category_list: string[] = res.map((item: Menu) => {
