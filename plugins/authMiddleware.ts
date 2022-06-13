@@ -4,8 +4,7 @@ export default defineNuxtPlugin(() => {
   addRouteMiddleware('auth', () => {
     const store = useRestaurantStore();
     let router = useRouter();
-    console.log(store.user);
-    if (store.user === null) {
+    if (store.user === null && !store.appLoading) {
       router.push('/login');
     }
   });
