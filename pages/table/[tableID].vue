@@ -25,7 +25,7 @@ onMounted(() => {
 
 let restaurantStore = useRestaurantStore();
 
-if (restaurantStore.tables.length === 0) {
+if (!restaurantStore.tables.length) {
   restaurantStore.FETCH_MENU_ITEMS();
 }
 
