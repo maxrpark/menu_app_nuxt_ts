@@ -22,6 +22,10 @@
 import { useRestaurantStore } from '~~/store/restaurant';
 let restaurantStore = useRestaurantStore();
 
+onMounted(() => {
+  window.scrollTo(0, 0);
+});
+
 let heroInfo = reactive({
   title: 'Hello Menu App',
   text: 'Welcome to the best restaurant experience',

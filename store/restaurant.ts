@@ -91,19 +91,17 @@ export const useRestaurantStore = defineStore({
         this.showAmount = false;
       }
     },
-    FETCH_MENU_ITEMS() {
-      $fetch(
+    async FETCH_MENU_ITEMS() {
+      const resp = await fetch(
         `https://menu-app-nuxt.netlify.app/.netlify/functions/products/`
-      ).then((res: any) => {
-        console.log(typeof res);
-        console.log(res);
-        this.menu = res;
-        this.filtered_menu = res;
-        let category_list: string[] = res.map((item: Menu) => {
-          return item.category;
-        });
-        this.categories = ['all', ...new Set(category_list)];
+      );
+      const data = await resp.json();
+      this.menu = data;
+      this.filtered_menu = data;
+      let category_list: string[] = data.map((item: Menu) => {
+        return item.category;
       });
+      this.categories = ['all', ...new Set(category_list)];
     },
 
     SET_TABLES(data: TableInterface[]) {
@@ -165,6 +163,9 @@ export const useRestaurantStore = defineStore({
 
     SET_USER(user: any) {
       this.user = user;
+    },
+    USER_LOGOUT() {
+      this.user = null;
     },
   },
 });

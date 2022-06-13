@@ -23,16 +23,20 @@
           <li class="nav-item">
             <NuxtLink class="nav-link" to="/about">About</NuxtLink>
           </li>
-          <li class="nav-item">
-            <NuxtLink class="nav-link" to="/manager">Manager</NuxtLink>
-          </li>
           <li v-if="!store.user" class="nav-item">
-            <NuxtLink class="nav-link" to="/login">login</NuxtLink>
+            <NuxtLink class="nav-link text-danger" to="/login"
+              >Manager</NuxtLink
+            >
           </li>
-          <li v-if="store.user" class="nav-item">
-            {{ store.user.email }}
+          <li v-else class="nav-item">
+            <NuxtLink class="nav-link text-success" to="/manager"
+              >Manager</NuxtLink
+            >
           </li>
-          <li v-if="store.user" @click="logOutUser" class="nav-item">logout</li>
+
+          <li v-if="isManagerPage" @click="logOutUser" class="nav-item">
+            <span class="nav-link">Logout</span>
+          </li>
         </ul>
       </div>
     </div>
@@ -45,6 +49,15 @@ import { useRestaurantStore } from '~~/store/restaurant';
 
 let store = useRestaurantStore();
 let expand = ref(false);
+const route = useRoute();
+
+let isManagerPage = computed(() => {
+  if (store.user && route.path === '/manager') {
+    return true;
+  } else {
+    return false;
+  }
+});
 </script>
 
 <style scoped>

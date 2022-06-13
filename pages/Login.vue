@@ -2,6 +2,10 @@
   <section class="container d-flex align-items-center">
     <form @submit.prevent="" class="form mx-auto shadow p-3">
       <h2 class="text-center">Login</h2>
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <small>email: manager@menuapp.com</small>
+        <small>password: menuapp</small>
+      </div>
       <div class="form-group">
         <label class="text-center d-block m-3" for="exampleInputEmail1"
           >Email address</label
@@ -29,7 +33,7 @@
       </div>
       <div class="d-flex justify-content-center mt-4">
         <button @click="handleClick" type="submit" class="btn btn-primary">
-          Submit
+          Login
         </button>
       </div>
       <div v-for="error in errorMessages" :key="error">
@@ -78,15 +82,6 @@ const handleClick = async () => {
   setTimeout(() => {
     errorMessages.value = [];
   }, 3000);
-  // await login(email.value, password.value);
-  // if (!error.value) {
-  //   router.push('/manager');
-  // } else {
-  //   errorMessage.value = error.value;
-  //   setTimeout(() => {
-  //     errorMessage.value = '';
-  //   }, 3000);
-  // }
 };
 </script>
 

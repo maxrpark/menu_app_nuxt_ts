@@ -19,8 +19,16 @@ import {
 } from '../../ts/interfaces/globalInterfaces';
 import { useRestaurantStore } from '~~/store/restaurant';
 
+onMounted(() => {
+  window.scrollTo(0, 0);
+});
+
 let restaurantStore = useRestaurantStore();
-restaurantStore.FETCH_MENU_ITEMS();
+
+if (restaurantStore.tables.length === 0) {
+  restaurantStore.FETCH_MENU_ITEMS();
+}
+
 let pageRoute = useRoute();
 
 getCollection('tables', ['id', '==', pageRoute.params.tableID]);

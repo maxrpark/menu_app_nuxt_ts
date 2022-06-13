@@ -44,13 +44,12 @@ export const unitUser = async () => {
     const store = useRestaurantStore();
     store.SET_USER(user);
     store.appLoading = true;
-    console.log(store.appLoading);
+
     // @ts-ignore: Unreachable code error
     if (user) {
       const uid = user.uid;
       let router = useRouter();
       let route = useRoute();
-      console.log('user');
       if (route.path === '/Login') {
         router.push('/manager');
       }
@@ -58,13 +57,14 @@ export const unitUser = async () => {
       console.log('no user');
     }
     store.appLoading = false;
-    console.log(store.appLoading);
   });
 };
 
 export const logOutUser = async () => {
+  const store = useRestaurantStore();
   const auth = getAuth();
   await auth.signOut();
+  store.USER_LOGOUT();
   let router = useRouter();
   router.push('/');
 };
