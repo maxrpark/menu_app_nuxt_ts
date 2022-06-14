@@ -1,43 +1,68 @@
-# Nuxt 3 Minimal Starter
+<div align="center">
+<h2> Noodle App! </h1>
+  
+![alt text](https://img.shields.io/badge/My%20first%20website-3.0.2-blue)  ![alt text](https://img.shields.io/badge/Made%20by-Max-brightgreen) ![alt text](https://img.shields.io/badge/Made%20With-Nuxt.js-drakgreen) ![alt text](https://img.shields.io/badge/Made%20With-typescript-blue) ![alt text](https://img.shields.io/badge/Made%20With-Firebase-yellow)
+</div>
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+# Menu App
 
-## Setup
+Menu app is a Nuxt application built using typescript, Pinia, Netlify Serverless Functions, and Firebase.
 
-Make sure to install the dependencies:
+The idea of the app is to replace the traditional restaurant's printed menu with a digital one.
 
-```bash
-# yarn
-yarn install
+The menu can be used on mobile but the idea is that the restaurant has at least one table per table.
 
-# npm
-npm install
+The application is divided into two-part, customer, and manager.
 
-# pnpm
-pnpm install --shamefully-hoist
-```
+## Customer
 
-## Development Server
+The customer can choose from one of the available tables and after that has access to the table page.
 
-Start the development server on http://localhost:3000
+On this page, the customer can find all the available options on the menu and filter them into categories and subcategories.
 
-```bash
-npm run dev
-```
+Each menu item has a small description and price, it also has the option to select the amount and add it to the table order.
 
-## Production
+On the table page, the customer can also check the table order details and totals.
 
-Build the application for production:
+Finally, there are two buttons on the top left, one to call a waiter and another one to ask for the bill.
 
-```bash
-npm run build
-```
+## Manager section
 
-Locally preview production build:
+The manager page is only available after login. On this page, the manager can take an overview of the restaurant.
 
-```bash
-npm run preview
-```
+There 5 sections on the manager page:
+1. Total section
+- Display sales of the day
+2. Tables section
+- Take a look at all the tables, select a specific table, and also can reserve or clear them.
+  Single table section
+- If the manager clicks on table details can get access to all the orders of the table. With a bottom to checkout
+3. Checkout section
+- Get final details of the table and confirm checkout. 
+- After the checkout is confirmed the table is available again and the daily total amount is updated.
+4. Order sections
+- Show every new order coming from the tables.
+- Click on the x icon to mark the orders as completed. Completed orders are removed from the list.
 
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment) for more information.
-# menu_app_nuxt_ts
+## Pinia
+
+The main two reasons for this project were to build something with Nuxt and Pinia.
+
+That is why more a less entire states of the application are controlled using Pinia.
+
+## Firebase
+
+I wanted to have some backend functionalities and I did not want to create a Django server for that, so I decide to learn firebase and create some documents for table control, orders, and checkout.
+
+I used firebase real-time update so the entire all is always updated even if it's used on different devices at the same time.
+
+I also used firebase auth to create a manager account, to have access to the manager page.
+
+## Netlify serverless functions.
+
+I also created an API for the menu items. I used netlify serverless functions and airtable, since it is easier and faster for these small tasks.
+
+The side is deployed in Netlify.
+
+Visit the site clickig [here](https://menu-app-nuxt.netlify.app/)
+
