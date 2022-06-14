@@ -1,8 +1,8 @@
 <template>
+  <SectionTitle :props="heroInfo" class="mt-5 container text-center" />
   <div
     class="container d-flex flex-column justify-content-center align-items-center"
   >
-    <h1 class="text-center m-4">About</h1>
     <section>
       <h2 class="text-center">Menu App</h2>
       <p>
@@ -110,6 +110,10 @@
 <script setup lang="ts">
 onMounted(() => {
   window.scrollTo(0, 0);
+});
+let heroInfo = reactive({
+  title: 'About',
+  text: 'Learn about Menu App',
 });
 </script>
 
