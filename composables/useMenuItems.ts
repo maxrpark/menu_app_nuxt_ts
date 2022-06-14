@@ -1,9 +1,9 @@
 const useMenuItems = () => {
-  let menu_amount = ref(0);
+  let menu_amount = ref(1);
 
   const handleDecrease = () => {
     menu_amount.value--;
-    if (menu_amount.value <= 0) menu_amount.value = 0;
+    if (menu_amount.value <= 1) menu_amount.value = 1;
   };
   const handleIncrease = () => {
     menu_amount.value++;

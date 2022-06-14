@@ -1,7 +1,6 @@
 <template>
   <main>
     <SectionTitle :props="heroInfo" class="mt-5 container text-center" />
-
     <div
       class="container d-flex flex-column justify-content-center align-items-center"
     >
