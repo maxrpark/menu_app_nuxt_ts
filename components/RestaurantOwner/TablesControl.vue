@@ -31,7 +31,8 @@
                 Tables details
               </button>
             </li>
-            <li v-if="table.total_amount === 0">
+            <li>
+              <!-- <li v-if="table.total_amount === 0"> -->
               <button
                 @click="$emit('reserveOrClearTable', table)"
                 class="dropdown-item"

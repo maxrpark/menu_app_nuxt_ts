@@ -4450,7 +4450,6 @@ var require_src = __commonJS({
 // functions/products.ts
 require_main().config();
 var Airtable = require_src();
-console.log(process.env.KEY);
 var airtable = new Airtable({ apiKey: process.env.KEY }).base("apptyrbqU499FHLlN").table("products");
 exports.handler = async () => {
   try {
