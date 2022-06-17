@@ -34,12 +34,12 @@ export default {};
 <style scoped>
 /* Footer */
 footer {
-  height: 100px;
+  min-height: 100px;
   display: grid;
   place-content: center;
   margin-top: 2rem;
   text-align: center;
-  padding: 3rem;
+  padding: 1rem;
 }
 footer a {
   text-decoration: underline;
