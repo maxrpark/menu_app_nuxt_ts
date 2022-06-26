@@ -62,7 +62,7 @@ I also used firebase auth to create a manager account, to have access to the man
 
 I also created an API for the menu items. I used netlify serverless functions and airtable, since it is easier and faster for these small tasks.
 
-The side is deployed in Netlify.
+The site is deployed in Netlify.
 
 Visit the site clickig [here](https://menu-app-nuxt.netlify.app/)
 

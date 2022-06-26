@@ -104,7 +104,7 @@
           tasks.
         </p>
         <h2 class="text-center">Deployment</h2>
-        <p>The side is deployed in Netlify.</p>
+        <p>The site is deployed in Netlify.</p>
       </section>
     </div>
   </main>
