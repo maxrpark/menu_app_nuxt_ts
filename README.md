@@ -1,8 +1,6 @@
-<div align="center">
-<h2> Menu App! </h1>
-  
+
 ![alt text](https://img.shields.io/badge/Made%20by-Max-brightgreen) ![alt text](https://img.shields.io/badge/Made%20With-Nuxt.js-drakgreen) ![alt text](https://img.shields.io/badge/Made%20With-typescript-blue) ![alt text](https://img.shields.io/badge/Made%20With-Firebase-yellow)
-</div>
+
 
 # Menu App
 
